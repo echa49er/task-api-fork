@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get('/', taskController.getTasks);
 router.post('/', validateTask, taskController.createTask);
-router.post('/', validateTask, taskController.createTask);
+router.get('/:id', validateTaskId, taskController.getTaskById);
 
 export default router;
