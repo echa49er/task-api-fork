@@ -5,6 +5,18 @@ export async function getTasks(req, res, next) {
   res.json(tasks);
 }
 
+export async function getTaskById(req, res, next) {
+  try {
+    const task = await taskService.getTaskById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json(task);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function createTask(req, res, next) {
   const { title, completed } = req.body;
   const task = await taskService.createTask({ title, completed });
