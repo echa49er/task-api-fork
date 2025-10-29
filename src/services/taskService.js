@@ -5,7 +5,11 @@ export async function getAllTasks() {
 }
 
 export async function getTaskById(id) {
-  return taskRepository.findById(id);
+  try {
+    return await taskRepository.findById(id);
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function createTask(newTask) {

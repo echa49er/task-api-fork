@@ -13,6 +13,12 @@ export async function getTaskById(req, res, next) {
     }
     res.json(task);
   } catch (error) {
+    if (error.message === 'ID must be a number') {
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: ['ID must be a number']
+      });
+    }
     next(error);
   }
 }

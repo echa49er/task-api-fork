@@ -5,8 +5,13 @@ export async function findAll() {
 }
 
 export async function findById(id) {
+  const taskId = parseInt(id);
+  if (isNaN(taskId)) {
+    throw new Error('ID must be a number');
+  }
+  
   return prisma.task.findUnique({
-    where: { id: parseInt(id) }
+    where: { id: taskId }
   });
 }
 

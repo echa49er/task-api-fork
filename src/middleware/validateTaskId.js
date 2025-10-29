@@ -4,7 +4,9 @@ import { checkValidationResults } from './handleValidationErrors.js';
 export const validateTaskId = [
   param('id')
     .isInt({ min: 1 })
-    .withMessage('ID must be a positive integer'),
+    .withMessage('ID must be a positive integer')
+    .bail()
+    .toInt(),
   
   checkValidationResults,
 ];
